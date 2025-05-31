@@ -1,0 +1,9 @@
+spring:
+  ai:
+    mcp:
+      server:
+        name: Acorn-AI MCP Server
+        version: 0.0.1-SNAPSHOT
+        type: sync
+        sse-message-endpoint: /mcp/messages
+        instructions: "This server provides functions for knowledge base management."
