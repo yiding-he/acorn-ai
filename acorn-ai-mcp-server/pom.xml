@@ -2,27 +2,31 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.hyd</groupId>
-        <artifactId>acorn-ai-parent</artifactId>
-        <relativePath>../acorn-ai-parent/pom.xml</relativePath>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>
+  <parent>
+    <groupId>com.hyd</groupId>
+    <artifactId>acorn-ai-parent</artifactId>
+    <relativePath>../acorn-ai-parent/pom.xml</relativePath>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
 
-    <artifactId>acorn-ai-mcp-server</artifactId>
-    <version>${project.parent.version}</version>
-    <packaging>jar</packaging>
+  <artifactId>acorn-ai-mcp-server</artifactId>
+  <version>${project.parent.version}</version>
+  <packaging>jar</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.ai</groupId>
-            <artifactId>spring-ai-starter-mcp-server-webmvc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.hyd</groupId>
-            <artifactId>acorn-ai-kb</artifactId>
-        </dependency>
-    </dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.ai</groupId>
+      <artifactId>spring-ai-starter-mcp-server-webmvc</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.hyd</groupId>
+      <artifactId>acorn-ai-kb</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.ai</groupId>
+      <artifactId>spring-ai-starter-model-openai</artifactId>
+    </dependency>
+  </dependencies>
 </project>

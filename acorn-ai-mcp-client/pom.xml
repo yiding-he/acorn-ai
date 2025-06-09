@@ -11,18 +11,13 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>acorn-ai-webapp</artifactId>
+    <artifactId>acorn-ai-mcp-client</artifactId>
     <version>${project.parent.version}</version>
-    <packaging>jar</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.hyd</groupId>
-            <artifactId>acorn-ai-kb</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-    </dependencies>
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
 </project>

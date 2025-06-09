@@ -7,3 +7,12 @@ spring:
         type: sync
         sse-message-endpoint: /mcp/messages
         instructions: "This server provides functions for knowledge base management."
+    openai:
+      base-url: "https://dashscope.aliyuncs.com/compatible-mode"
+      api-key: ${env.ALIYUN_LLM_API_KEY}
+      embedding:
+        options:
+          model: text-embedding-v3
+
+acorn-ai:
+  vector-store-local-path: target/vector-store.data

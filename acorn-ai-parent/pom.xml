@@ -1,55 +1,75 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.hyd</groupId>
-    <artifactId>acorn-ai-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.hyd</groupId>
+  <artifactId>acorn-ai-parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
-    <name>acorn-ai</name>
+  <name>acorn-ai</name>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.6</version>
-    </parent>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.4.6</version>
+  </parent>
 
-    <modules>
-        <module>../acorn-ai-kb</module>
-        <module>../acorn-ai-mcp-server</module>
-        <module>../acorn-ai-webapp</module>
-    </modules>
+  <modules>
+    <!-- 向量库封装模块，将面向向量的操作封装为面向 Article 的操作 -->
+    <module>../acorn-ai-kb</module>
+    <!-- 以 Model Context Protocol 协议向 LLM 提供服务 -->
+    <module>../acorn-ai-mcp-server</module>
+    <!-- 接收用户请求，处理并发任务，调用 LLM 执行多步骤处理，向 LLM 提供 mcp-server 接口 -->
+    <module>../acorn-ai-mcp-client</module>
+    <!-- 用户界面 -->
+    <module>../acorn-ai-webapp</module>
+  </modules>
 
-    <properties>
-        <skipTests>true</skipTests>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>17</java.version>
-        <spring-ai.version>1.0.0</spring-ai.version>
-    </properties>
+  <properties>
+    <skipTests>true</skipTests>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>17</java.version>
+    <spring-ai.version>1.0.0</spring-ai.version>
+  </properties>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <!--
+      IntelliJ Bug
+      https://youtrack.jetbrains.com/issue/IDEA-183168/20173-JUnit-5-dependency-resolution-via-Maven-ignores-Maven-settings
+      -->
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-launcher</artifactId>
+      <version>1.11.4</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <dependencyManagement>
     <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
+      <dependency>
+        <groupId>org.springframework.ai</groupId>
+        <artifactId>spring-ai-bom</artifactId>
+        <version>${spring-ai.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.hyd</groupId>
+        <artifactId>acorn-ai-kb</artifactId>
+        <version>${project.version}</version>
+      </dependency>
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.ai</groupId>
-                <artifactId>spring-ai-bom</artifactId>
-                <version>${spring-ai.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.hyd</groupId>
-                <artifactId>acorn-ai-kb</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+  </dependencyManagement>
 </project>
