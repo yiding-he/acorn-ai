@@ -1,0 +1,15 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+### GET 向知识库添加内容
+GET http://localhost:8081/chat?msg=添加一条信息到知识库，内容如下：任天堂发布了新款手持游戏主机 Nintendo Switch 2。
+
+
+### GET 搜索任天堂
+GET http://localhost:8081/chat?msg=根据用户提问，提取关键字并在知识库中搜索。用户提问内容：任天堂的新游戏机叫什么？
+
+
+### GET 搜索韩国总统
+GET http://localhost:8081/chat?msg=根据用户提问，提取关键字并在知识库中搜索。用户提问内容：韩国总统是谁？
+

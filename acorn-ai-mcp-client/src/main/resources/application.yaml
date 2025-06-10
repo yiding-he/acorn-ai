@@ -1,0 +1,19 @@
+spring:
+  ai:
+    mcp:
+      client:
+        sse:
+          connections:
+            server1:
+              url: http://localhost:8080
+    openai:
+      base-url: "https://dashscope.aliyuncs.com/compatible-mode"
+      api-key: ${ALIYUN_LLM_API_KEY}
+      chat:
+        options:
+          model: qwen-turbo-2025-04-28
+      embedding:
+        options:
+          model: text-embedding-v3
+server:
+  port: 8081

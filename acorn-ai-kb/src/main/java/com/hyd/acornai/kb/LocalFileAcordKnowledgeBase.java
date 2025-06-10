@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.SimpleVectorStore;
+import org.springframework.util.StringUtils;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -63,6 +64,13 @@ public class LocalFileAcordKnowledgeBase implements AcordKnowledgeBase {
 
   public void save() {
     if (this.dataFile != null) {
+      if (Files.notExists(this.dataFile)) {
+        try {
+          Files.createFile(this.dataFile);
+        } catch (Exception e) {
+          log.error("Failed to create data file: {}", this.dataFile.toAbsolutePath(), e);
+        }
+      }
       this.vectorStore.save(this.dataFile.toFile());
     }
   }
@@ -87,14 +95,18 @@ public class LocalFileAcordKnowledgeBase implements AcordKnowledgeBase {
    */
   @Override
   public void delete(String articleId) {
-    vectorStore.delete(articleId);
-    save();
+    if (StringUtils.hasText(articleId)) {
+      vectorStore.delete(articleId);
+      save();
+    }
   }
 
   @Override
   public void delete(List<String> articleIds) {
-    vectorStore.delete(articleIds);
-    save();
+    if (articleIds != null && !articleIds.isEmpty()) {
+      vectorStore.delete(articleIds.stream().filter(StringUtils::hasText).toList());
+      save();
+    }
   }
 
   /**

@@ -2,17 +2,17 @@ spring:
   ai:
     mcp:
       server:
-        name: Acorn-AI MCP Server
+        name: AcornAI MCP Server
         version: 0.0.1-SNAPSHOT
         type: sync
         sse-message-endpoint: /mcp/messages
-        instructions: "This server provides functions for knowledge base management."
+        instructions: "This AcornAI MCP server provides functions for knowledge base management."
     openai:
       base-url: "https://dashscope.aliyuncs.com/compatible-mode"
-      api-key: ${env.ALIYUN_LLM_API_KEY}
+      api-key: ${ALIYUN_LLM_API_KEY}
       embedding:
         options:
           model: text-embedding-v3
 
 acorn-ai:
-  vector-store-local-path: target/vector-store.data
+  vector-store-local-path: acorn-ai-mcp-server/target/vector-store.data

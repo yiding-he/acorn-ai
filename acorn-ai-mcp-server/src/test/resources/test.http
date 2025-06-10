@@ -1,0 +1,18 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+### POST 更新知识库
+POST http://localhost:8080/api/knowledge-base/update
+Content-Type: application/json
+
+{
+  "newArticles": [
+    "这是新增的文章一内容。",
+    "这是新增的文章二内容。"
+  ]
+}
+
+### GET 搜索知识库
+GET http://localhost:8080/api/knowledge-base/search?keyword=韩国总统
+

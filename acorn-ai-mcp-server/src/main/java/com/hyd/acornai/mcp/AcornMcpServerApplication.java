@@ -1,7 +1,6 @@
 package com.hyd.acornai.mcp;
 
 import com.hyd.acornai.kb.LocalFileAcordKnowledgeBase;
-import com.hyd.acornai.mcp.services.AcordKnowledgeBaseService;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.tool.ToolCallbackProvider;
 import org.springframework.ai.tool.method.MethodToolCallbackProvider;
@@ -22,13 +21,13 @@ public class AcornMcpServerApplication {
   }
 
   @Bean
-  public ToolCallbackProvider tableOfContentTools(AcordKnowledgeBaseService service) {
+  public ToolCallbackProvider tableOfContentTools(AcornKnowledgeBaseService service) {
     return MethodToolCallbackProvider.builder().toolObjects(service).build();
   }
 
   @Bean
-  public AcordKnowledgeBaseService acordKnowledgeBaseService(EmbeddingModel embeddingModel, AcornConfig config) {
-    return new AcordKnowledgeBaseService(new LocalFileAcordKnowledgeBase(
+  public AcornKnowledgeBaseService acordKnowledgeBaseService(EmbeddingModel embeddingModel, AcornConfig config) {
+    return new AcornKnowledgeBaseService(new LocalFileAcordKnowledgeBase(
       SimpleVectorStore.builder(embeddingModel).build(),
       Path.of(config.getVectorStoreLocalPath())
     ));
